@@ -1,11 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains:[
-      'api.lorem.space', 'placeimg.com', 'wixmp.co', 'romapym'
-    ]
-  },
+  /**  @type {import('next').NextConfig} */
+  const nextConfig = { 
+    reactStrictMode: true,
+    swcManify: true,
+    images: {
+      domains:[
+        'api.lorem.space', 'placeimg.com', 'wixmp.co', 'romapym'],
+    },
+  };
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+});
+
+module.exports = withPWA(nextConfig);
+ 
+
  /* env:{
     customkey: 'customValue',
   },
@@ -21,6 +32,3 @@ const nextConfig = {
     ]
   },
   */
-}
-
-module.exports = nextConfig
